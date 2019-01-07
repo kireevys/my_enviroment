@@ -1,27 +1,27 @@
 #!/bin/bash
-##
+
 ##Variables
-
+v_sl=5
 #Connect root
-#sudo -s
-#Add repositories
-#Sublime repos
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt-get install apt-transport-https
+echo '***Login by ROOT'
 
-#Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#Add repositories
+sh add_repos.sh
 
 #Update System
-sudo apt update
-sudo apt upgrade --yes
+sh update_sys.sh
 
-#Install Programm
-sudo apt install git
-sudo apt install sublime-text-installer
-sudo apt install google-chrome-stable
-sudo apt install speedtest-cli
-sudo snap install pycharm-community
+#Install Programm by APT/APT-get
+sh install_pack.sh
 
+#Install by Snap repositories
+sh install_pack_by_snap.sh
 
+#Run Functionality files
+echo '***Run files..'
+sh cyrrilic_console.sh
+
+#cp config
+sh config.sh
+
+echo '***PREPARING SYSTEM... DONE!'
